@@ -1,0 +1,12 @@
+flowchart LR
+  API["HTTP API: POST /events"] -->|key=device_id| MAIN["Kafka topic: events"]
+  MAIN --> PROC["Processor / Consumer"]
+  RETRY["Kafka topic: events.retry"] --> PROC
+  PROC --> BA["Batch accumulator"]
+  BA --> SINK["Primary sink: data/events.jsonl"]
+  PROC -->|normal success path| SINK
+  PROC -->|retry path: transient failure + retries left| RETRY
+  PROC -->|DLQ path: permanent failure or retries exhausted| DLQ["DLQ sink: data/dlq.jsonl"]
+  PROC --> LEDGER["Idempotency ledger (optional)"]
+  API --> APIS["GET /stats (api-local)"]
+  PROC --> CDBG["GET /consumer/debug/state (consumer-local)"]

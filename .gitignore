@@ -1,0 +1,29 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test binary and coverage
+*.test
+*.out
+coverage.out
+
+# Build artifacts
+bin/
+dist/
+
+# Vendor and workspace files
+vendor/
+*.work
+
+# Demo data
+data/*.jsonl
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
