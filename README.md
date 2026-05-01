@@ -1,5 +1,7 @@
 # Event-Driven Systems Trade-offs Demo
 
+[![CI](https://github.com/samuelhajnik/event-driven-systems-tradeoffs-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/samuelhajnik/event-driven-systems-tradeoffs-demo/actions/workflows/ci.yml)
+
 This repository demonstrates practical trade-offs in event-driven systems, with a focus on behavior under failure, retries, duplicates, batching, and downstream processing constraints.
 
 The goal is to make event-driven behavior observable: what happens when messages fail, retries occur, duplicates arrive, and consumers must balance correctness, latency, and throughput.
@@ -294,6 +296,10 @@ A production version of this design would usually require:
 | Strict ordering | Easier reasoning about event sequence | Lower parallelism |
 
 ---
+
+## CI
+
+GitHub Actions runs on pushes and pull requests to `main`. The workflow runs the Go test suite, runs `go vet`, and validates the Docker Compose configuration.
 
 ## Summary
 
